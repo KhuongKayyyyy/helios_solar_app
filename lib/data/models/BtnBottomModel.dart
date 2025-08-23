@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/cupertino.dart';
 
 class BtnBottomModel {
@@ -9,13 +10,13 @@ class BtnBottomModel {
   late Color borderColor;
   late Color bgColor;
 
-  BtnBottomModel(IconData? icon, String imageString, String name, int index, Color textColor, Color borderColor, Color bgColor){
-    this.icon = icon;
-    this.imageString = imageString;
-    this.name = name;
-    this.index = index;
-    this.textColor = textColor;
-    this.borderColor = borderColor;
-    this.bgColor = bgColor;
-  }
+  BtnBottomModel(
+    this.icon,
+    this.imageString,
+    this.name,
+    this.index,
+    this.textColor,
+    this.borderColor,
+    this.bgColor,
+  );
 }

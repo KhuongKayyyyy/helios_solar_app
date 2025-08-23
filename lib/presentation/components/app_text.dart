@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:helios/core/constants/ColorConstants.dart';
-import 'package:helios/core/constants/StringConstants.dart';
+import 'package:helios/core/constants/color_constants.dart';
+import 'package:helios/core/constants/string_constants.dart';
 
+// ignore: must_be_immutable
 class AppText extends StatelessWidget {
   TextDecoration? textDecoration;
   String text;

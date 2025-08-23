@@ -5,8 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:intl/intl.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path_provider/path_provider.dart';
-import 'ColorConstants.dart';
+import 'package:helios/core/constants/color_constants.dart';
 
 class Utils {
   static String getSequenceStr(int drillSequenceCount) {

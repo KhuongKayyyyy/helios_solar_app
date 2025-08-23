@@ -1,11 +1,12 @@
 import 'package:get/get.dart';
+import 'package:helios/core/constants/color_constants.dart';
 
-import 'package:helios/core/constants/ColorConstants.dart';
 import 'package:helios/data/app_data/app_exports.dart';
 
-import 'AppButton.dart';
-import 'AppText.dart';
+import 'app_button.dart';
+import 'app_text.dart';
 
+// ignore: must_be_immutable
 class DeleteBottomSheet extends StatefulWidget {
   DeleteBottomSheet({super.key, required this.onTapDelete});
   Function() onTapDelete;

@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
-import "package:helios/core/constants/ColorConstants.dart";
-import "package:helios/presentation/components/AppText.dart";
+import "package:helios/core/constants/color_constants.dart";
+import "package:helios/presentation/components/app_text.dart";
 
 class AppPlaceHolder extends StatelessWidget {
   final double width;

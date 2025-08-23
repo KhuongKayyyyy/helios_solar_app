@@ -3,12 +3,13 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import 'ColorConstants.dart';
-import 'ImageConstants.dart';
+import 'package:helios/core/constants/color_constants.dart';
+import 'image_constants.dart';
 
 // 이미지 WIDGET 유틸
 class ImageUtils {
   // 프로필 이미지 위젯
+  // ignore: non_constant_identifier_names
   static Widget ProfileImage(String src, double width, double height) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(width / 2),
@@ -34,6 +35,7 @@ class ImageUtils {
     );
   }
 
+  // ignore: non_constant_identifier_names
   static Widget ProfileImageFile(File file, double width, double height) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(width / 2),

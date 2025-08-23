@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
-import 'package:helios/core/constants/ColorConstants.dart';
+import 'package:helios/core/constants/color_constants.dart';
 import 'package:helios/core/constants/utils.dart';
-import 'package:helios/presentation/components/AppCheckBox.dart';
-import 'AppText.dart';
+import 'package:helios/presentation/components/app_check_box.dart';
+import 'app_text.dart';
 import 'appTextField.dart';
 import 'package:lottie/lottie.dart';
 
@@ -25,6 +25,7 @@ Future showCustomDialog(
   return showDialog(
     context: context,
     barrierDismissible: barrierDismissible,
+    // ignore: deprecated_member_use
     builder: (context) => WillPopScope(
       onWillPop: () {
         if (barrierDismissible) Navigator.pop(context);
@@ -159,6 +160,7 @@ Future showCustomCheckboxDialog(
   return showDialog(
     context: context,
     barrierDismissible: barrierDismissible,
+    // ignore: deprecated_member_use
     builder: (context) => WillPopScope(
       onWillPop: () {
         if (barrierDismissible) Navigator.pop(context);
@@ -298,6 +300,7 @@ Future showCustomTextFieldDialog(
   return showDialog(
     context: context,
     barrierDismissible: barrierDismissible,
+    // ignore: deprecated_member_use
     builder: (context) => WillPopScope(
       onWillPop: () {
         if (barrierDismissible) Navigator.pop(context);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:helios/core/constants/ColorConstants.dart';
-import 'package:helios/presentation/components/AppText.dart';
+import 'package:helios/core/constants/color_constants.dart';
+import 'package:helios/presentation/components/app_text.dart';
 
 class AppSegmentationMenu extends StatefulWidget {
   final List<String> items;
@@ -36,6 +36,7 @@ class _AppSegmentationMenuState extends State<AppSegmentationMenu> {
       height: widget.height ?? 40,
       decoration: BoxDecoration(
         color:
+            // ignore: deprecated_member_use
             widget.backgroundColor ?? ColorConstants.appBlack.withOpacity(0.2),
         borderRadius: BorderRadius.circular(widget.borderRadius ?? 20),
         border: Border.all(color: ColorConstants.hintTextColor, width: 1),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:helios/core/constants/ColorConstants.dart';
-import 'package:helios/core/constants/Constants.dart';
-import 'package:helios/core/constants/StringConstants.dart';
+import 'package:helios/core/constants/color_constants.dart';
+import 'package:helios/core/constants/constants.dart';
+import 'package:helios/core/constants/string_constants.dart';
 
-// 앱 고유 텍스트
+// ignore: must_be_immutable
 class AppButton extends StatelessWidget {
   TextDecoration? textDecoration;
   String text;

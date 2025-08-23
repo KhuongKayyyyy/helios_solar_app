@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:helios/core/constants/ColorConstants.dart';
-import 'package:helios/core/constants/ImageConstants.dart';
-import 'package:helios/core/constants/ImageUtils.dart';
-import 'package:helios/core/constants/StringConstants.dart';
+import 'package:helios/core/constants/color_constants.dart';
+import 'package:helios/core/constants/image_constants.dart';
+import 'package:helios/core/constants/image_utils.dart';
+import 'package:helios/core/constants/string_constants.dart';
+import 'package:helios/presentation/components/app_text.dart';
 
-import 'AppText.dart';
-
+// ignore: must_be_immutable
 class AppCheckBox extends StatefulWidget {
   AppCheckBox({
     super.key,

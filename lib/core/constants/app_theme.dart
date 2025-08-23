@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:helios/core/constants/ColorConstants.dart';
+import 'package:helios/core/constants/color_constants.dart';
 
 class AppTheme {
   static ThemeData get theme {

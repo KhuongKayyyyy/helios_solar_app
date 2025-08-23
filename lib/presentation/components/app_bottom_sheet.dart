@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart' hide Trans;
+import 'package:helios/core/constants/color_constants.dart';
 import 'package:helios/data/models/BtnBottomModel.dart';
+import 'package:helios/presentation/components/app_text.dart';
 
-import '../../core/constants/ColorConstants.dart';
-import 'AppText.dart';
-
+// ignore: must_be_immutable
 class AppBottomSheetWidget extends StatelessWidget {
   AppBottomSheetWidget({
     super.key,
