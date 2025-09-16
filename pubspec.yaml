@@ -40,6 +40,9 @@ dependencies:
   intl: ^0.20.2
   fluttertoast: ^8.2.12
   lottie: ^3.3.1
+  liquid_glass_renderer: ^0.1.1-dev.6
+  glass_kit: ^4.0.1
+  fl_chart: ^1.0.0
 
 dev_dependencies:
   flutter_test:

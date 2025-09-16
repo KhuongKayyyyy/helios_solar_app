@@ -3,8 +3,8 @@ import 'package:get/get.dart' hide Trans;
 import 'package:helios/core/constants/color_constants.dart';
 import 'package:helios/core/constants/utils.dart';
 import 'package:helios/presentation/components/app_check_box.dart';
+import 'package:helios/presentation/components/app_text_field.dart';
 import 'app_text.dart';
-import 'appTextField.dart';
 import 'package:lottie/lottie.dart';
 
 Future showCustomDialog(

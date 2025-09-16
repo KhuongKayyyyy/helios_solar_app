@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 // 앱 컬러 셋
 class ColorConstants {
-  static Color appColor = const Color(0xfff6c743);
+  static Color appColor = const Color(0xffdbff02);
   static Color appSubColor = const Color(0xffF2895A);
   static Color appBgBlack = const Color(0xff131514);
   static Color halfBlack = const Color(0x88000000);
