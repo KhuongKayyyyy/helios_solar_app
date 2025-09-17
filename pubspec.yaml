@@ -43,6 +43,10 @@ dependencies:
   liquid_glass_renderer: ^0.1.1-dev.6
   glass_kit: ^4.0.1
   fl_chart: ^1.0.0
+  flutter_easyloading: ^3.0.5
+  dio: ^5.9.0
+  flutter_secure_storage: ^9.2.4
+  skeletonizer: ^2.1.0+1
 
 dev_dependencies:
   flutter_test:

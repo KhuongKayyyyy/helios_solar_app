@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:helios/core/util/extensions.dart";
 import "package:helios/data/models/group_section.dart";
+import "package:helios/presentation/components/app_back_button.dart";
 import "package:helios/presentation/widget/item/field_panel_section_item.dart";
 import "package:fl_chart/fl_chart.dart";
 import "dart:math";
@@ -367,6 +368,10 @@ class _PanelGroupDetailPageState extends State<PanelGroupDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: const SizedBox(height: 20, width: 20, child: AppBackButton()),
+        title: const Text('Panel Group Detail'),
+      ),
       body: Column(
         children: [
           kToolbarHeight.y,
