@@ -2,10 +2,12 @@ import 'package:get/get.dart';
 import 'package:helios/core/constants/nav_ids.dart';
 import 'package:helios/core/router/route_name.dart';
 import 'package:helios/data/app_data/app_exports.dart';
-import 'package:helios/data/models/field_model.dart';
+import 'package:helios/data/models/field/field_model.dart';
 import 'package:helios/presentation/screens/field/field_detail_page.dart';
 import 'package:helios/presentation/screens/field/panel_group_detail_page.dart';
 import 'package:helios/presentation/screens/home/home_page.dart';
+import 'package:helios/presentation/screens/weather/weather_detail_page.dart';
+import 'package:helios/presentation/screens/weather/weather_detail_controller.dart';
 
 class HomeRouter extends StatelessWidget {
   const HomeRouter({super.key});
@@ -25,6 +27,14 @@ class HomeRouter extends StatelessWidget {
           return GetPageRoute(
             settings: settings,
             page: () => PanelGroupDetailPage(),
+          );
+        } else if (settings.name == RouteName.weatherDetail) {
+          return GetPageRoute(
+            settings: settings,
+            page: () => WeatherDetailPage(),
+            binding: BindingsBuilder(() {
+              Get.lazyPut(() => WeatherDetailController());
+            }),
           );
         }
         return GetPageRoute(settings: settings, page: () => HomePage());

@@ -3,7 +3,7 @@ import "package:get/get.dart";
 import "package:get/get_core/src/get_main.dart";
 import "package:helios/core/constants/nav_ids.dart";
 import "package:helios/core/router/route_name.dart";
-import "package:helios/data/models/panel_group.dart";
+import "package:helios/data/models/field/panel_group.dart";
 import "package:helios/presentation/components/app_text.dart";
 import "dart:math";
 

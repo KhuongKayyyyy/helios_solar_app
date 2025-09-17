@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:helios/data/dio/error/error_exception_type.dart';
 import 'package:helios/data/dio/interceptor/dio_interceptor.dart';
 import 'package:helios/data/services/secure_storage_service.dart';
@@ -13,19 +14,60 @@ enum TokenType { none, access, refresh, both }
 abstract class BaseURL {
   static const String dev = "http://34.47.125.196:3000/";
   static const String prod = "https://api.studychingu.com/";
+  static const String weather = "https://api.weatherapi.com/v1/";
 }
 
 /// 네트워크 서비스
 class DioService {
-  static final DioService _instance = DioService._internal();
-  factory DioService() => _instance;
+  static DioService? _defaultInstance;
+  static final Map<String, DioService> _instances = {};
 
   late final Dio _dio;
-  final String _baseUrl = BaseURL.prod;
+  late final String _baseUrl;
   final SecureStorageService _storage = SecureStorageService();
 
+  /// Factory method that returns appropriate instance based on base URL
+  factory DioService({String? baseUrl}) {
+    final targetUrl = baseUrl ?? _getDefaultBaseUrl();
+
+    // If requesting the default instance and it exists, return it
+    if (baseUrl == null && _defaultInstance != null) {
+      return _defaultInstance!;
+    }
+
+    // Check if we already have an instance for this base URL
+    if (_instances.containsKey(targetUrl)) {
+      return _instances[targetUrl]!;
+    }
+
+    // Create new instance
+    final instance = DioService._internal(baseUrl: targetUrl);
+
+    // Store as default instance if no specific baseUrl was provided
+    if (baseUrl == null) {
+      _defaultInstance = instance;
+    }
+
+    // Store in instances map
+    _instances[targetUrl] = instance;
+
+    return instance;
+  }
+
+  /// Get the default instance (must be initialized first)
+  static DioService get instance {
+    if (_defaultInstance == null) {
+      throw StateError(
+        'DioService not initialized. Call DioService.initialize() first.',
+      );
+    }
+    return _defaultInstance!;
+  }
+
   // 생성자 (외부에서 인스턴스를 생성할 수 없음)
-  DioService._internal() {
+  DioService._internal({String? baseUrl}) {
+    _baseUrl = _determineBaseUrl(baseUrl);
+
     _dio = Dio(
       BaseOptions(
         baseUrl: _baseUrl,
@@ -46,6 +88,52 @@ class DioService {
 
     // 토큰 인터셉터
     _dio.interceptors.add(DioInterceptor(storage: _storage));
+  }
+
+  /// Get the default base URL based on environment configuration
+  static String _getDefaultBaseUrl() {
+    try {
+      // Try to load from environment variables
+      final envBaseUrl = dotenv.env['BASE_URL'];
+      if (envBaseUrl != null && envBaseUrl.isNotEmpty) {
+        return envBaseUrl;
+      }
+    } catch (e) {
+      debugPrint('Error reading environment variables: $e');
+    }
+
+    // Check for debug mode to decide between dev and prod
+    if (kDebugMode) {
+      return BaseURL.dev;
+    }
+
+    // Default to production
+    return BaseURL.prod;
+  }
+
+  /// Determine the base URL from environment variables or use the provided/default URL
+  String _determineBaseUrl(String? providedBaseUrl) {
+    // If a base URL is explicitly provided, use it
+    if (providedBaseUrl != null && providedBaseUrl.isNotEmpty) {
+      return providedBaseUrl;
+    }
+
+    return _getDefaultBaseUrl();
+  }
+
+  /// Get the current base URL
+  String get baseUrl => _baseUrl;
+
+  /// Initialize the service with environment variables (call this in main.dart)
+  static Future<void> initialize({String? baseUrl}) async {
+    try {
+      await dotenv.load(fileName: ".env");
+    } catch (e) {
+      debugPrint('No .env file found or error loading it: $e');
+    }
+
+    // Initialize the default instance
+    DioService(baseUrl: baseUrl);
   }
 
   // GET 요청

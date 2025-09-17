@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:helios/core/util/extensions.dart";
-import "package:helios/data/models/panel_group.dart";
+import "package:helios/data/models/field/panel_group.dart";
 import "package:helios/presentation/components/app_text.dart";
 import "package:helios/presentation/widget/item/panel_group_item.dart";
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:helios/core/constants/color_constants.dart';
-import 'package:helios/data/models/BtnBottomModel.dart';
+import 'package:helios/data/models/app_model/BtnBottomModel.dart';
 import 'package:helios/presentation/components/app_text.dart';
 
 // ignore: must_be_immutable

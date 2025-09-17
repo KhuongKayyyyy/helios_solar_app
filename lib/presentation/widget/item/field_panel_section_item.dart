@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:helios/data/models/group_section.dart';
+import 'package:helios/data/models/field/group_section.dart';
 import 'package:helios/presentation/components/app_text.dart';
 
 class FieldPanelSectionItem extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helios/core/constants/nav_ids.dart';
-import 'package:helios/data/models/field_model.dart';
+import 'package:helios/data/models/field/field_model.dart';
 import 'package:helios/presentation/components/app_text.dart';
 import 'package:helios/presentation/screens/field/field_detail_page.dart';
 
