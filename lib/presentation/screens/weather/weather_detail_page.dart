@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -149,18 +150,40 @@ class WeatherDetailPage extends GetView<WeatherDetailController> {
                     ? Positioned(
                         top: 320,
                         left: -50,
-                        child: ImageFiltered(
-                          imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                          child: Image.asset(AppImage.cloud, width: 200),
-                        ),
+                        child: kIsWeb
+                            ? Opacity(
+                                opacity: 0.3,
+                                child: Image.asset(AppImage.cloud, width: 200),
+                              )
+                            : ImageFiltered(
+                                imageFilter: ImageFilter.blur(
+                                  sigmaX: 5,
+                                  sigmaY: 5,
+                                ),
+                                child: Image.asset(AppImage.cloud, width: 200),
+                              ),
                       )
                     : Positioned(
                         top: 320,
                         left: -50,
-                        child: ImageFiltered(
-                          imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                          child: Image.asset(AppImage.star_back, width: 200),
-                        ),
+                        child: kIsWeb
+                            ? Opacity(
+                                opacity: 0.3,
+                                child: Image.asset(
+                                  AppImage.star_back,
+                                  width: 200,
+                                ),
+                              )
+                            : ImageFiltered(
+                                imageFilter: ImageFilter.blur(
+                                  sigmaX: 5,
+                                  sigmaY: 5,
+                                ),
+                                child: Image.asset(
+                                  AppImage.star_back,
+                                  width: 200,
+                                ),
+                              ),
                       ),
                 // Close button
                 Positioned(
