@@ -6,8 +6,11 @@ MediaQueryData mediaQueryData = MediaQueryManager._instance.mediaQueryData;
 
 // These are the Viewport values of your Figma Design.
 // These are used in the code as a reference to create your UI Responsively.
+// ignore: constant_identifier_names
 const num FIGMA_DESIGN_WIDTH = 390;
+// ignore: constant_identifier_names
 const num FIGMA_DESIGN_HEIGHT = 844;
+// ignore: constant_identifier_names
 const num FIGMA_DESIGN_STATUS_BAR = 0;
 
 extension ResponsiveExtension on num {

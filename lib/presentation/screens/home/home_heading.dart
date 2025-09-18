@@ -18,6 +18,7 @@ class HomeHeading extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
+              // ignore: deprecated_member_use
               color: Colors.white.withOpacity(0.1),
               borderRadius: BorderRadius.circular(12),
             ),
@@ -39,6 +40,7 @@ class HomeHeading extends StatelessWidget {
                   'Hello,',
                   style: TextStyle(
                     fontSize: 14,
+                    // ignore: deprecated_member_use
                     color: Colors.white.withOpacity(0.7),
                     fontWeight: FontWeight.w400,
                   ),
@@ -57,6 +59,7 @@ class HomeHeading extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
+              // ignore: deprecated_member_use
               color: Colors.white.withOpacity(0.1),
               borderRadius: BorderRadius.circular(12),
             ),

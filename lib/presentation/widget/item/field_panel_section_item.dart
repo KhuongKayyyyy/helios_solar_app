@@ -15,6 +15,7 @@ class FieldPanelSectionItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Colors.grey.withOpacity(0.1),
             spreadRadius: 1,
             blurRadius: 4,
@@ -32,6 +33,7 @@ class FieldPanelSectionItem extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
+                    // ignore: deprecated_member_use
                     color: const Color(0xFF22C55E).withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -59,6 +61,7 @@ class FieldPanelSectionItem extends StatelessWidget {
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
+                          // ignore: deprecated_member_use
                           color: const Color(0xFF6B7280).withOpacity(0.1),
                           borderRadius: BorderRadius.circular(6),
                         ),

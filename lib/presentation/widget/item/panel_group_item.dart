@@ -1,13 +1,10 @@
 import "package:flutter/material.dart";
 import "package:get/get.dart";
-import "package:get/get_core/src/get_main.dart";
 import "package:helios/core/constants/nav_ids.dart";
 import "package:helios/core/router/route_name.dart";
 import "package:helios/data/models/field/panel_group.dart";
 import "package:helios/presentation/components/app_text.dart";
 import "dart:math";
-
-import "package:helios/presentation/screens/field/panel_group_detail_page.dart";
 
 class PanelGroupItem extends StatelessWidget {
   final PanelGroup panelGroup;
@@ -53,7 +50,7 @@ class PanelGroupItem extends StatelessWidget {
           children: [
             // Circular progress indicator with power rating
             Center(
-              child: Container(
+              child: SizedBox(
                 width: 120,
                 height: 120,
                 child: Stack(
@@ -131,6 +128,7 @@ class PanelGroupItem extends StatelessWidget {
             // Divider
             Container(
               height: 1,
+              // ignore: deprecated_member_use
               color: Colors.black.withOpacity(0.2),
               margin: const EdgeInsets.symmetric(vertical: 10),
             ),

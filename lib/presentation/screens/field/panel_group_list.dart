@@ -101,6 +101,7 @@ class _PanelGroupListState extends State<PanelGroupList>
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
+                        // ignore: deprecated_member_use
                         color: Colors.black.withOpacity(0.1),
                         blurRadius: 10,
                         offset: const Offset(0, 2),
@@ -124,6 +125,7 @@ class _PanelGroupListState extends State<PanelGroupList>
                             ),
                             decoration: BoxDecoration(
                               color: isSelected
+                                  // ignore: deprecated_member_use
                                   ? const Color(0xFFE6F3A5).withOpacity(0.3)
                                   : Colors.transparent,
                               borderRadius: index == 0
@@ -178,6 +180,7 @@ class _PanelGroupListState extends State<PanelGroupList>
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
+                // ignore: deprecated_member_use
                 color: Colors.black.withOpacity(0.1),
                 blurRadius: 10,
                 offset: const Offset(0, 2),
@@ -209,6 +212,7 @@ class _PanelGroupListState extends State<PanelGroupList>
                     ),
                     decoration: BoxDecoration(
                       color: _showDropdown
+                          // ignore: deprecated_member_use
                           ? const Color(0xFFE6F3A5).withOpacity(0.2)
                           : Colors.transparent,
                       borderRadius: BorderRadius.circular(8),
@@ -295,6 +299,7 @@ class _PanelGroupListState extends State<PanelGroupList>
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: [
                                 BoxShadow(
+                                  // ignore: deprecated_member_use
                                   color: Colors.black.withOpacity(0.1),
                                   blurRadius: 10,
                                   offset: const Offset(0, 4),

@@ -105,12 +105,11 @@ class WeatherByDaySection extends StatelessWidget {
     );
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
       child: Row(
         children: [
-          const SizedBox(width: 50),
           SizedBox(
-            width: 80,
+            width: 110, // Increased width for date
             child: AppText(
               text: dayText,
               color: Colors.white,
@@ -129,7 +128,7 @@ class WeatherByDaySection extends StatelessWidget {
           ),
           const Spacer(),
           SizedBox(
-            width: 70,
+            width: 90, // Increased width for temperature
             child: AppText(
               text: temperatureRange,
               color: Colors.white,
@@ -138,7 +137,6 @@ class WeatherByDaySection extends StatelessWidget {
               textAlign: TextAlign.end,
             ),
           ),
-          const SizedBox(width: 50),
         ],
       ),
     );
@@ -153,23 +151,30 @@ class WeatherByDaySection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
-          const SizedBox(width: 50),
-          AppText(
-            text: day,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
+          const SizedBox(width: 70), // Increased width for date
+          SizedBox(
+            width: 110,
+            child: AppText(
+              text: day,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
           ),
           const Spacer(),
           Image.asset(icon, scale: 5),
           const Spacer(),
-          AppText(
-            text: temperature,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
+          SizedBox(
+            width: 90, // Increased width for temperature
+            child: AppText(
+              text: temperature,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              textAlign: TextAlign.end,
+            ),
           ),
-          const SizedBox(width: 50),
+          const SizedBox(width: 20),
         ],
       ),
     );

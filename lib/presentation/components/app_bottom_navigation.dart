@@ -88,6 +88,7 @@ class _AppBottomNavigationState extends State<AppBottomNavigation>
                       width: 48,
                       height: 48,
                       transform: Matrix4.identity()
+                        // ignore: deprecated_member_use
                         ..scale(isSelected ? _scaleAnimation.value * 1.1 : 1.0),
                       decoration: BoxDecoration(
                         color: isSelected

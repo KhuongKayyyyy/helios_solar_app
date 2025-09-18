@@ -27,6 +27,7 @@ class WeatherByHourItem extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               color: isCurrentTime
+                  // ignore: deprecated_member_use
                   ? Colors.white.withOpacity(0.3)
                   : Colors.transparent,
               borderRadius: BorderRadius.circular(15),
@@ -51,7 +52,9 @@ class WeatherByHourItem extends StatelessWidget {
                   width: 35,
                   height: 12,
                   borderRadius: const BorderRadius.all(Radius.circular(6)),
+                  // ignore: deprecated_member_use
                   baseColor: Colors.white.withOpacity(0.1),
+                  // ignore: deprecated_member_use
                   highlightColor: Colors.white.withOpacity(0.2),
                 ),
               ],
@@ -75,6 +78,7 @@ class WeatherByHourItem extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: isCurrentTime
+                // ignore: deprecated_member_use
                 ? Colors.white.withOpacity(0.3)
                 : Colors.transparent,
             borderRadius: BorderRadius.circular(15),
@@ -86,6 +90,7 @@ class WeatherByHourItem extends StatelessWidget {
               Text(
                 temperature,
                 style: const TextStyle(
+                  // ignore: deprecated_member_use
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 12,
@@ -104,6 +109,7 @@ class WeatherByHourItem extends StatelessWidget {
               Text(
                 "${time.hour.toString().padLeft(2, '0')}:00",
                 style: const TextStyle(
+                  // ignore: deprecated_member_use
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 12,

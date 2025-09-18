@@ -16,10 +16,12 @@ class CurrentWeatherInformation extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width * 0.8,
         decoration: BoxDecoration(
+          // ignore: deprecated_member_use
           border: Border.all(color: Colors.white.withOpacity(0.3), width: 3),
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
+              // ignore: deprecated_member_use
               color: Colors.black.withOpacity(0.2),
               blurRadius: 15,
               spreadRadius: 2,
@@ -32,6 +34,7 @@ class CurrentWeatherInformation extends StatelessWidget {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
             child: Container(
+              // ignore: deprecated_member_use
               color: Colors.white.withOpacity(0.15),
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
               child: Column(

@@ -39,6 +39,7 @@ extension OfficeTimingsExtension on String {
   }
 }
 
+// ignore: camel_case_extensions
 extension date on DateTime {
   ///Example:
   ///Convert 2023-5-9 21:12:23:000Z to 9,May 2023
@@ -63,13 +64,7 @@ extension date on DateTime {
     return "$day ${monthNames[month]}, $year";
   }
 
-  ///Example:
-  ///Convert 2023-5-9 21:12:23:000Z to 9:12:23 PM
   String get toPkTime {
-    int hour = this.hour;
-    int minute = this.minute;
-    int sec = second;
-
     String formattedTime = DateFormat('h:mm a').format(this);
 
     return formattedTime;
@@ -150,6 +145,7 @@ extension date on DateTime {
   }
 }
 
+// ignore: camel_case_extensions
 extension str on String {
   String get readableTime {
     DateTime dateTime = DateTime.parse(this);
@@ -163,43 +159,30 @@ extension StringExt2 on int {
     switch (this) {
       case 1:
         return "فروردین";
-        break;
       case 2:
         return "اردیبهشت";
-        break;
       case 3:
         return "خرداد";
-        break;
       case 4:
         return "تیر";
-        break;
       case 5:
         return "مرداد";
-        break;
       case 6:
         return "شهریور";
-        break;
       case 7:
         return "مهر";
-        break;
       case 8:
         return "آبان";
-        break;
       case 9:
         return "آذر";
-        break;
       case 10:
         return "دی";
-        break;
       case 11:
         return "بهمن";
-        break;
       case 12:
         return "اسفند";
-        break;
       default:
         return '$this';
-        break;
     }
   }
 
@@ -207,43 +190,30 @@ extension StringExt2 on int {
     switch (this) {
       case 1:
         return "Jan";
-        break;
       case 2:
         return "Feb";
-        break;
       case 3:
         return "March";
-        break;
       case 4:
         return "April";
-        break;
       case 5:
         return "May";
-        break;
       case 6:
         return "June";
-        break;
       case 7:
         return "July";
-        break;
       case 8:
         return "Aug";
-        break;
       case 9:
         return "Sep";
-        break;
       case 10:
         return "Oct";
-        break;
       case 11:
         return "Nov";
-        break;
       case 12:
         return "Dec";
-        break;
       default:
         return '$this';
-        break;
     }
   }
 }
@@ -322,8 +292,6 @@ extension StackExtension on Widget {
     List<Widget> secondHalf = [];
 
     if (order == 0 || order > fullItems.length - 1) {
-      print("in condition");
-
       return fullItems;
     }
 

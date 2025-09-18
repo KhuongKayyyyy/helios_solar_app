@@ -23,33 +23,33 @@ class AppImage {
   //weather
   // ignore: constant_identifier_names
   static const String hot_sun = 'assets/images/weather/hot_sun.png';
-  static const String sun = 'assets/images/weather/sun.avif';
+  static const String sun = 'assets/images/weather/sun.png';
   static const String windy = 'assets/images/weather/windy.png';
   static const String cloud = 'assets/images/weather/cloud.png';
-  static const String cloudy = 'assets/images/weather/cloudy.avif';
-  static const String rain = 'assets/images/weather/rain.avif';
-  static const String rainbow = 'assets/images/weather/rainbow.avif';
+  static const String cloudy = 'assets/images/weather/cloudy.png';
+  static const String rain = 'assets/images/weather/rain.png';
+  static const String rainbow = 'assets/images/weather/rainbow.png';
   // ignore: constant_identifier_names
   static const String rain_with_thunder =
-      'assets/images/weather/rain_with_thunder.avif';
+      'assets/images/weather/rain_with_thunder.png';
   // ignore: constant_identifier_names
   static const String rain_with_rainbow =
-      'assets/images/weather/rain_with_rainbow.avif';
+      'assets/images/weather/rain_with_rainbow.png';
   // ignore: constant_identifier_names
-  static const String rain_at_night = 'assets/images/weather/rain_at_night.jpg';
+  static const String rain_at_night = 'assets/images/weather/rain_at_night.png';
   // ignore: constant_identifier_names
   static const String little_rain_at_night =
-      'assets/images/weather/little_rain_at_night.jpeg';
+      'assets/images/weather/little_rain_at_night.png';
   // ignore: constant_identifier_names
   static const String dangerous_rain_at_night =
-      'assets/images/weather/dangerous_rain_at_night.jpeg';
+      'assets/images/weather/dangerous_rain_at_night.png';
   // ignore: constant_identifier_names
   static const String rain_with_thunder_at_night =
-      'assets/images/weather/rain_with_thunder_at_night.jpeg';
+      'assets/images/weather/rain_with_thunder_at_night.png';
   // ignore: constant_identifier_names
   static const String many_cloud = 'assets/images/weather/many_cloud.webp';
   // ignore: constant_identifier_names
-  static const String many_rainbow = 'assets/images/weather/many_rainbow.avif';
+  static const String many_rainbow = 'assets/images/weather/many_rainbow.png';
 
   // Background weather images
   // ignore: constant_identifier_names

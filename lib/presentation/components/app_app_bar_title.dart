@@ -13,6 +13,7 @@ class AppAppBarTitle extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
 
         gradient: LinearGradient(
+          // ignore: deprecated_member_use
           colors: [Colors.white, Colors.white.withOpacity(0.1)],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,

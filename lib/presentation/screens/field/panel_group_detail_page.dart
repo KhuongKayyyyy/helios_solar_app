@@ -84,6 +84,7 @@ class _PanelGroupDetailPageState extends State<PanelGroupDetailPage> {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Colors.black.withOpacity(0.1),
             blurRadius: 8,
             offset: const Offset(0, 2),
@@ -194,6 +195,7 @@ class _PanelGroupDetailPageState extends State<PanelGroupDetailPage> {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Colors.black.withOpacity(0.1),
             blurRadius: 8,
             offset: const Offset(0, 2),
@@ -257,21 +259,24 @@ class _PanelGroupDetailPageState extends State<PanelGroupDetailPage> {
                       reservedSize: 20,
                       interval: 6,
                       getTitlesWidget: (value, meta) {
-                        if (value == 0)
+                        if (value == 0) {
                           return const Text(
                             '6AM',
                             style: TextStyle(fontSize: 10),
                           );
-                        if (value == 6)
+                        }
+                        if (value == 6) {
                           return const Text(
                             '12PM',
                             style: TextStyle(fontSize: 10),
                           );
-                        if (value == 11)
+                        }
+                        if (value == 11) {
                           return const Text(
                             '6PM',
                             style: TextStyle(fontSize: 10),
                           );
+                        }
                         return const Text('');
                       },
                     ),
@@ -291,6 +296,7 @@ class _PanelGroupDetailPageState extends State<PanelGroupDetailPage> {
                     dotData: const FlDotData(show: false),
                     belowBarData: BarAreaData(
                       show: true,
+                      // ignore: deprecated_member_use
                       color: Colors.blue[100]!.withOpacity(0.3),
                     ),
                   ),
@@ -315,6 +321,7 @@ class _PanelGroupDetailPageState extends State<PanelGroupDetailPage> {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Colors.black.withOpacity(0.1),
             blurRadius: 8,
             offset: const Offset(0, 2),

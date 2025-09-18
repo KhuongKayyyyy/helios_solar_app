@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:helios/core/constants/nav_ids.dart';
 import 'package:helios/core/controllers/home_controller.dart';
 import 'package:helios/core/router/route_name.dart';
-import 'package:helios/presentation/screens/weather/weather_detail_page.dart';
 
 import 'package:helios/presentation/screens/home/home_heading.dart';
 import 'package:helios/presentation/widget/item/field_item.dart';

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:helios/core/util/extensions.dart';
 import 'package:helios/data/models/field/field_model.dart';
-import 'package:helios/data/models/field/group_section.dart';
 import 'package:helios/presentation/components/app_app_bar_title.dart';
 import 'package:helios/presentation/components/app_back_button.dart';
 import 'package:helios/presentation/screens/field/field_heading_section.dart';
 import 'package:helios/presentation/screens/field/panel_group_list.dart';
-import 'package:helios/presentation/widget/item/field_panel_section_item.dart';
 
 class FieldDetailPage extends StatefulWidget {
   final FieldModel field;

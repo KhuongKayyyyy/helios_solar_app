@@ -44,10 +44,6 @@ class WeatherDetailPage extends GetView<WeatherDetailController> {
             onPressed: () => Navigator.of(context).pop(),
           ),
           actions: [
-            IconButton(
-              icon: Icon(Icons.refresh, color: Colors.white),
-              onPressed: controller.refreshWeather,
-            ),
             if (controller.isLoading.value)
               Container(
                 margin: const EdgeInsets.only(right: 16),
@@ -97,7 +93,11 @@ class WeatherDetailPage extends GetView<WeatherDetailController> {
                         child: Image.asset(AppImage.moon_back, width: 200),
                       ),
                 Padding(
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.only(
+                    right: 10,
+                    left: 10,
+                    bottom: 100,
+                  ),
                   child: RefreshIndicator(
                     onRefresh: controller.refreshWeather,
                     color: Colors.white,
@@ -140,6 +140,7 @@ class WeatherDetailPage extends GetView<WeatherDetailController> {
                                     horizontal: 20,
                                   ),
                                   decoration: BoxDecoration(
+                                    // ignore: deprecated_member_use
                                     color: Colors.red.withOpacity(0.7),
                                     borderRadius: BorderRadius.circular(8),
                                   ),

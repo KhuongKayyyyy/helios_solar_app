@@ -51,8 +51,11 @@ class _SkeletonLoadingState extends State<SkeletonLoading>
 
   @override
   Widget build(BuildContext context) {
+    // ignore: deprecated_member_use
     final baseColor = widget.baseColor ?? Colors.white.withOpacity(0.15);
+    // ignore: deprecated_member_use
     final highlightColor =
+        // ignore: deprecated_member_use
         widget.highlightColor ?? Colors.white.withOpacity(0.35);
 
     return AnimatedBuilder(
@@ -93,6 +96,7 @@ class SkeletonCurrentWeather extends StatelessWidget {
           Text(
             'Loading weather data...',
             style: TextStyle(
+              // ignore: deprecated_member_use
               color: Colors.white.withOpacity(0.7),
               fontSize: 14,
               fontWeight: FontWeight.w500,
@@ -195,6 +199,7 @@ class SkeletonHourlyWeather extends StatelessWidget {
             width: 70,
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             decoration: BoxDecoration(
+              // ignore: deprecated_member_use
               color: Colors.white.withOpacity(0.1),
               borderRadius: BorderRadius.circular(15),
             ),
@@ -206,6 +211,7 @@ class SkeletonHourlyWeather extends StatelessWidget {
                   height: 12,
                   borderRadius: BorderRadius.all(Radius.circular(6)),
                 ),
+                // ignore: deprecated_member_use
                 SizedBox(height: 10),
                 SkeletonLoading(
                   width: 24,
