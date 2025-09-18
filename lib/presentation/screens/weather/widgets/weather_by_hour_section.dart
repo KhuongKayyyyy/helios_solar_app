@@ -39,7 +39,9 @@ class WeatherByHourSection extends StatelessWidget {
                 final isPastHour = itemTime.isBefore(now);
 
                 // Debug: Uncomment to see which data source is used
-                // print('🕐 Hour ${itemTime.hour}: ${isPastHour ? "HISTORY" : "FORECAST"} data needed');
+                print(
+                  '🕐 Hour ${itemTime.hour}: ${isPastHour ? "HISTORY" : "FORECAST"} data needed for ${itemTime.day}/${itemTime.month} ${itemTime.hour}:00',
+                );
 
                 if (isPastHour) {
                   // Use history data for past hours
@@ -53,25 +55,69 @@ class WeatherByHourSection extends StatelessWidget {
                     final historyDays =
                         controller.historyWeather.value!.forecast.forecastday;
 
+                    print(
+                      '🔍 Looking for history data for ${itemTime.day}/${itemTime.month} ${itemTime.hour}:00',
+                    );
+                    print('📊 Available history days: ${historyDays.length}');
+
                     // Find the history day that matches the item time
-                    for (final historyDay in historyDays) {
+                    for (
+                      int dayIndex = 0;
+                      dayIndex < historyDays.length;
+                      dayIndex++
+                    ) {
+                      final historyDay = historyDays[dayIndex];
                       final historyDate = DateTime.parse(historyDay.date);
+
+                      print(
+                        '📅 Checking history day ${dayIndex + 1}: ${historyDay.date} (${historyDay.hour.length} hours)',
+                      );
+
                       if (historyDate.year == itemTime.year &&
                           historyDate.month == itemTime.month &&
                           historyDate.day == itemTime.day) {
+                        print(
+                          '✅ Date match found! Looking for hour ${itemTime.hour}...',
+                        );
+
                         // Find the hour that matches
-                        for (final hour in historyDay.hour) {
+                        for (
+                          int hourIndex = 0;
+                          hourIndex < historyDay.hour.length;
+                          hourIndex++
+                        ) {
+                          final hour = historyDay.hour[hourIndex];
                           final hourTime = DateTime.parse(
                             hour.time.replaceFirst(' ', 'T'),
                           );
+
+                          print(
+                            '⏰ Checking hour ${hourIndex + 1}: ${hour.time} (parsed: ${hourTime.hour})',
+                          );
+
                           if (hourTime.hour == itemTime.hour) {
+                            print(
+                              '🎯 Hour match found! Using history data for ${itemTime.hour}:00',
+                            );
                             hourData = hour;
                             break;
                           }
                         }
                         break;
+                      } else {
+                        print(
+                          '❌ Date mismatch: ${historyDate.day}/${historyDate.month}/${historyDate.year} vs ${itemTime.day}/${itemTime.month}/${itemTime.year}',
+                        );
                       }
                     }
+
+                    if (hourData == null) {
+                      print(
+                        '❌ No history data found for ${itemTime.day}/${itemTime.month} ${itemTime.hour}:00',
+                      );
+                    }
+                  } else {
+                    print('❌ No history weather data available');
                   }
                 } else {
                   // Use forecast data for current and future hours

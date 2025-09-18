@@ -111,7 +111,7 @@ class WeatherDetailController extends GetxController {
         final pastDateString = pastDateTime.toIso8601String().split('T')[0];
 
         print(
-          '🕐 Need history for: ${pastDateTime.day}/${pastDateTime.month} ${pastDateTime.hour}:00',
+          '🕐 Need history for: ${pastDateTime.day}/${pastDateTime.month} ${pastDateTime.hour}:00 (date: $pastDateString)',
         );
 
         historyFutures.add(
@@ -121,7 +121,26 @@ class WeatherDetailController extends GetxController {
                 pastDateString,
                 pastDateTime.hour,
               )
-              .timeout(const Duration(seconds: 30)),
+              .timeout(const Duration(seconds: 30))
+              .catchError((error) {
+                print(
+                  '❌ Failed to fetch history for hour ${pastDateTime.hour}: $error',
+                );
+                // Return a dummy result to prevent Future.wait from failing
+                return ForecastWeatherModel(
+                  location: Location(
+                    name: location.value,
+                    region: '',
+                    country: '',
+                    lat: 0.0,
+                    lon: 0.0,
+                    tzId: '',
+                    localtimeEpoch: 0,
+                    localtime: '',
+                  ),
+                  forecast: Forecast(forecastday: []),
+                );
+              }),
         );
       }
 
@@ -129,13 +148,81 @@ class WeatherDetailController extends GetxController {
       final forecastResult = await forecastFuture;
       final historyResults = await Future.wait(historyFutures);
 
+      print('📊 History results received: ${historyResults.length} responses');
+
       final completeWeatherData = forecastResult;
 
       // Combine all history data into a single structure
-      final List<ForecastDay> allHistoryDays = [];
-      for (final historyData in historyResults) {
-        allHistoryDays.addAll(historyData.forecast.forecastday);
+      // We need to merge hours from the same date to avoid duplicates
+      final Map<String, ForecastDay> historyDaysByDate = {};
+
+      for (int i = 0; i < historyResults.length; i++) {
+        final historyData = historyResults[i];
+        print(
+          '📊 Processing history result ${i + 1}: ${historyData.forecast.forecastday.length} days',
+        );
+
+        for (final day in historyData.forecast.forecastday) {
+          print('📅 History day: ${day.date} with ${day.hour.length} hours');
+
+          if (historyDaysByDate.containsKey(day.date)) {
+            // Merge hours from the same date
+            final existingDay = historyDaysByDate[day.date]!;
+            final mergedHours = List<Hour>.from(existingDay.hour);
+
+            // Add new hours that don't already exist
+            for (final newHour in day.hour) {
+              final newHourTime = DateTime.parse(
+                newHour.time.replaceFirst(' ', 'T'),
+              );
+              bool hourExists = mergedHours.any((existingHour) {
+                final existingHourTime = DateTime.parse(
+                  existingHour.time.replaceFirst(' ', 'T'),
+                );
+                return existingHourTime.hour == newHourTime.hour;
+              });
+
+              if (!hourExists) {
+                mergedHours.add(newHour);
+                print(
+                  '📝 Added hour ${newHourTime.hour}:00 to existing date ${day.date}',
+                );
+              } else {
+                print(
+                  '⚠️ Hour ${newHourTime.hour}:00 already exists for date ${day.date}',
+                );
+              }
+            }
+
+            // Sort hours by time
+            mergedHours.sort((a, b) {
+              final timeA = DateTime.parse(a.time.replaceFirst(' ', 'T'));
+              final timeB = DateTime.parse(b.time.replaceFirst(' ', 'T'));
+              return timeA.compareTo(timeB);
+            });
+
+            // Update the day with merged hours
+            historyDaysByDate[day.date] = ForecastDay(
+              date: day.date,
+              dateEpoch: day.dateEpoch,
+              day: day.day,
+              astro: day.astro,
+              hour: mergedHours,
+            );
+
+            print(
+              '✅ Merged day ${day.date} now has ${mergedHours.length} hours',
+            );
+          } else {
+            // First occurrence of this date
+            historyDaysByDate[day.date] = day;
+            print('➕ Added new date ${day.date} with ${day.hour.length} hours');
+          }
+        }
       }
+
+      final List<ForecastDay> allHistoryDays = historyDaysByDate.values
+          .toList();
 
       // Create combined history weather model
       final combinedHistoryWeather = ForecastWeatherModel(
@@ -150,6 +237,13 @@ class WeatherDetailController extends GetxController {
         '📅 Forecast days: ${completeWeatherData.forecast.forecastday.length}',
       );
       print('📊 History days collected: ${allHistoryDays.length}');
+
+      // Debug: Print total hours collected from history
+      int totalHistoryHours = 0;
+      for (final day in allHistoryDays) {
+        totalHistoryHours += day.hour.length;
+      }
+      print('📊 Total history hours collected: $totalHistoryHours');
 
       completeWeather.value = completeWeatherData;
       historyWeather.value = combinedHistoryWeather;
