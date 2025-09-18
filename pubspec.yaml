@@ -48,6 +48,7 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   skeletonizer: ^2.1.0+1
   flutter_dotenv: ^5.2.1
+  flutter_gemini: ^3.0.0
 
 dev_dependencies:
   flutter_test:

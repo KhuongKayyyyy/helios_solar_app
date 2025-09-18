@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:get/get.dart';
 import 'package:helios/core/binding/app_binding.dart';
 import 'package:helios/core/constants/app_theme.dart';
@@ -9,6 +11,12 @@ import 'package:helios/presentation/screens/main_wrapper/main_wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Load environment variables first
+  await dotenv.load(fileName: ".env");
+
+  // Initialize Gemini with API key from environment
+  Gemini.init(apiKey: dotenv.env['GEMINI_API_KEY'] ?? '');
 
   // Initialize DioService with environment configuration
   await DioService.initialize();

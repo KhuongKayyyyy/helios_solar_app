@@ -11,7 +11,8 @@ import 'package:helios/presentation/screens/weather/widgets/weather_by_hour_sect
 import 'package:helios/presentation/widgets/skeleton_loading.dart';
 
 class WeatherDetailPage extends GetView<WeatherDetailController> {
-  const WeatherDetailPage({super.key});
+  final String? location;
+  const WeatherDetailPage({super.key, this.location});
 
   bool _isDayTime(DateTime now) {
     return now.hour >= 6 && now.hour < 18;
@@ -34,33 +35,6 @@ class WeatherDetailPage extends GetView<WeatherDetailController> {
       bool isDayTime = _isDayTime(now);
 
       return Scaffold(
-        extendBodyBehindAppBar: true,
-        extendBody: true,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          actions: [
-            if (controller.isLoading.value)
-              Container(
-                margin: const EdgeInsets.only(right: 16),
-                child: const Center(
-                  child: SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-          ],
-        ),
-        backgroundColor: Colors.transparent,
         body: SizedBox.expand(
           child: Container(
             decoration: BoxDecoration(
@@ -98,93 +72,75 @@ class WeatherDetailPage extends GetView<WeatherDetailController> {
                     left: 10,
                     bottom: 100,
                   ),
-                  child: RefreshIndicator(
-                    onRefresh: controller.refreshWeather,
-                    color: Colors.white,
-                    backgroundColor: AppColors.primaryColor,
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: double.infinity,
-                      child: SingleChildScrollView(
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        child: Column(
-                          children: [
-                            const SizedBox(height: 50),
-                            Container(
-                              width: 100,
-                              height: 5,
-                              decoration: BoxDecoration(
-                                // ignore: deprecated_member_use
-                                color: Colors.white.withOpacity(0.3),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            Image.asset(
-                              AppImage.windy,
-                              width: 100,
-                              height: 100,
-                            ),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 50),
+                          // Removed header indicator (drag handle)
+                          const SizedBox(height: 0),
+                          Image.asset(AppImage.windy, width: 100, height: 100),
 
-                            const SizedBox(height: 20),
-                            Obx(() {
-                              if (controller.isLoading.value) {
-                                return const SkeletonCurrentWeather();
-                              } else if (controller
-                                  .errorMessage
-                                  .value
-                                  .isNotEmpty) {
-                                return Container(
-                                  padding: const EdgeInsets.all(20),
-                                  margin: const EdgeInsets.symmetric(
-                                    horizontal: 20,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    // ignore: deprecated_member_use
-                                    color: Colors.red.withOpacity(0.7),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Text(
-                                    controller.errorMessage.value,
-                                    style: const TextStyle(color: Colors.white),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                );
-                              } else if (controller.currentWeather.value !=
-                                  null) {
-                                return CurrentWeatherInformation(
-                                  currentWeather:
-                                      controller.currentWeather.value!,
-                                );
-                              } else {
-                                return Container(
-                                  padding: const EdgeInsets.all(20),
-                                  child: const Text(
-                                    'No weather data available',
-                                    style: TextStyle(color: Colors.white),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                );
-                              }
-                            }),
-                            const SizedBox(height: 20),
-                            Obx(() {
-                              if (controller.isLoading.value) {
-                                return const SkeletonHourlyWeather();
-                              } else {
-                                return const WeatherByHourSection();
-                              }
-                            }),
-                            const SizedBox(height: 20),
-                            Obx(() {
-                              if (controller.isLoading.value) {
-                                return const SkeletonDailyWeather();
-                              } else {
-                                return const WeatherByDaySection();
-                              }
-                            }),
-                          ],
-                        ),
+                          const SizedBox(height: 20),
+                          Obx(() {
+                            if (controller.isLoading.value) {
+                              return const SkeletonCurrentWeather();
+                            } else if (controller
+                                .errorMessage
+                                .value
+                                .isNotEmpty) {
+                              return Container(
+                                padding: const EdgeInsets.all(20),
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                ),
+                                decoration: BoxDecoration(
+                                  // ignore: deprecated_member_use
+                                  color: Colors.red.withOpacity(0.7),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Text(
+                                  controller.errorMessage.value,
+                                  style: const TextStyle(color: Colors.white),
+                                  textAlign: TextAlign.center,
+                                ),
+                              );
+                            } else if (controller.currentWeather.value !=
+                                null) {
+                              return CurrentWeatherInformation(
+                                currentWeather:
+                                    controller.currentWeather.value!,
+                              );
+                            } else {
+                              return Container(
+                                padding: const EdgeInsets.all(20),
+                                child: const Text(
+                                  'No weather data available',
+                                  style: TextStyle(color: Colors.white),
+                                  textAlign: TextAlign.center,
+                                ),
+                              );
+                            }
+                          }),
+                          const SizedBox(height: 20),
+                          Obx(() {
+                            if (controller.isLoading.value) {
+                              return const SkeletonHourlyWeather();
+                            } else {
+                              return const WeatherByHourSection();
+                            }
+                          }),
+                          const SizedBox(height: 20),
+                          Obx(() {
+                            if (controller.isLoading.value) {
+                              return const SkeletonDailyWeather();
+                            } else {
+                              return const WeatherByDaySection();
+                            }
+                          }),
+                        ],
                       ),
                     ),
                   ),
@@ -206,6 +162,56 @@ class WeatherDetailPage extends GetView<WeatherDetailController> {
                           child: Image.asset(AppImage.star_back, width: 200),
                         ),
                       ),
+                // Close button
+                Positioned(
+                  top: 100,
+                  left: 20,
+                  child: GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        // ignore: deprecated_member_use
+                        color: Colors.black.withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Icon(
+                        Icons.close,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                ),
+                // Loading indicator overlay
+                Obx(() {
+                  if (controller.isLoading.value) {
+                    return Positioned(
+                      top: 60,
+                      right: 20,
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          // ignore: deprecated_member_use
+                          color: Colors.black.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  } else {
+                    return const SizedBox.shrink();
+                  }
+                }),
               ],
             ),
           ),

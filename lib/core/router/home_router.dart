@@ -29,11 +29,14 @@ class HomeRouter extends StatelessWidget {
             page: () => PanelGroupDetailPage(),
           );
         } else if (settings.name == RouteName.weatherDetail) {
+          final location = settings.arguments as String?;
           return GetPageRoute(
             settings: settings,
-            page: () => WeatherDetailPage(),
+            page: () => WeatherDetailPage(location: location),
             binding: BindingsBuilder(() {
-              Get.lazyPut(() => WeatherDetailController());
+              Get.lazyPut(
+                () => WeatherDetailController()..setLocation(location),
+              );
             }),
           );
         }

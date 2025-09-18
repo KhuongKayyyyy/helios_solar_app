@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:helios/core/util/extensions.dart';
 import 'package:helios/data/models/field/field_model.dart';
 import 'package:helios/presentation/components/app_app_bar_title.dart';
 import 'package:helios/presentation/components/app_back_button.dart';
 import 'package:helios/presentation/screens/field/field_heading_section.dart';
 import 'package:helios/presentation/screens/field/panel_group_list.dart';
+import 'package:helios/presentation/screens/field/field_weather_controller.dart';
+import 'package:helios/presentation/screens/weather/widgets/monitoring_weather_widget.dart';
+import 'package:helios/presentation/screens/weather/weather_detail_page.dart';
 
 class FieldDetailPage extends StatefulWidget {
   final FieldModel field;
@@ -17,10 +21,21 @@ class FieldDetailPage extends StatefulWidget {
 class _FieldDetailPageState extends State<FieldDetailPage> {
   final ScrollController _scrollController = ScrollController();
   bool _showTitle = false;
+  late FieldWeatherController _weatherController;
 
   @override
   void initState() {
     super.initState();
+
+    // Initialize weather controller
+    _weatherController = Get.put(
+      FieldWeatherController(),
+      tag: widget.field.id,
+    );
+
+    // Fetch weather data for this field
+    _weatherController.fetchWeatherForField(widget.field.location);
+
     _scrollController.addListener(() {
       double offset = _scrollController.offset;
       if (offset > 330 && !_showTitle) {
@@ -38,6 +53,8 @@ class _FieldDetailPageState extends State<FieldDetailPage> {
   @override
   void dispose() {
     _scrollController.dispose();
+    // Clean up weather controller
+    Get.delete<FieldWeatherController>(tag: widget.field.id);
     super.dispose();
   }
 
@@ -91,6 +108,22 @@ class _FieldDetailPageState extends State<FieldDetailPage> {
           ),
           SliverPadding(
             padding: const EdgeInsets.all(15),
+            sliver: SliverToBoxAdapter(
+              child: GetBuilder<FieldWeatherController>(
+                tag: widget.field.id,
+                builder: (controller) {
+                  return MonitoringWeatherWidget(
+                    weather: controller.currentWeather.value,
+                    isLoading: controller.isLoading.value,
+                    fieldLocation: widget.field.location,
+                    onWeatherDetailTap: () => _showWeatherDetail(context),
+                  );
+                },
+              ),
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(15),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 // _buildPanelSectionGrid(),
@@ -101,6 +134,18 @@ class _FieldDetailPageState extends State<FieldDetailPage> {
           ),
         ],
       ),
+    );
+  }
+
+  void _showWeatherDetail(BuildContext context) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      useRootNavigator: true,
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (context) {
+        return WeatherDetailPage(location: widget.field.location);
+      },
     );
   }
 }

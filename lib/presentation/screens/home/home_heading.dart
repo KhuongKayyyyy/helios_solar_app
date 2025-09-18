@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:helios/presentation/components/app_text.dart';
 
 class HomeHeading extends StatelessWidget {
   const HomeHeading({super.key});
@@ -36,22 +37,18 @@ class HomeHeading extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Hello,',
-                  style: TextStyle(
-                    fontSize: 14,
-                    // ignore: deprecated_member_use
-                    color: Colors.white.withOpacity(0.7),
-                    fontWeight: FontWeight.w400,
-                  ),
+                AppText(
+                  text: 'Hello,',
+                  fontSize: 14,
+                  // ignore: deprecated_member_use
+                  color: Colors.white.withOpacity(0.7),
+                  fontWeight: FontWeight.w400,
                 ),
-                Text(
-                  'Amine',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
+                AppText(
+                  text: 'Dat Khuong',
+                  fontSize: 18,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
                 ),
               ],
             ),
@@ -78,13 +75,11 @@ class HomeHeading extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Center(
-              child: Text(
-                '3',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
+              child: AppText(
+                text: '3',
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),

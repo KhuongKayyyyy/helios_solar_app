@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:helios/core/constants/nav_ids.dart';
 import 'package:helios/core/controllers/home_controller.dart';
-import 'package:helios/core/router/route_name.dart';
 
 import 'package:helios/presentation/screens/home/home_heading.dart';
 import 'package:helios/presentation/widget/item/field_item.dart';
@@ -30,27 +28,6 @@ class HomePage extends GetView<HomeController> {
                 bottom: 16,
               ),
               child: const HomeHeading(),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: ElevatedButton(
-                onPressed: () {
-                  Get.toNamed(RouteName.weatherDetail, id: NavIds.home);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  minimumSize: const Size(double.infinity, 50),
-                ),
-                child: const Text(
-                  'Go to Weather Detail',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
             ),
 
             Expanded(

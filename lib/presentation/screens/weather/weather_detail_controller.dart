@@ -19,7 +19,16 @@ class WeatherDetailController extends GetxController {
     if (Get.arguments != null) {
       location.value = Get.arguments;
     }
+
     loadAllWeatherData();
+  }
+
+  /// Set location and load weather data
+  void setLocation(String? newLocation) {
+    if (newLocation != null && newLocation.isNotEmpty) {
+      location.value = newLocation;
+      loadAllWeatherData();
+    }
   }
 
   Future<void> getCompleteWeather() async {

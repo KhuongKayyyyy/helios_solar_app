@@ -52,7 +52,7 @@ class FieldItem extends StatelessWidget {
       },
       child: Container(
         width: 200,
-        height: 240,
+        height: 270,
         decoration: BoxDecoration(
           color: const Color(0xFF2D2D2D),
           borderRadius: BorderRadius.circular(20),
@@ -99,25 +99,52 @@ class FieldItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Condition text
+                    // Field Name
                     AppText(
-                      text: _getConditionText(field.condition),
-                      color: _getConditionColor(field.condition),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
+                      text: field.name ?? 'Unknown Field',
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      maxLine: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
+                    // Field Location
                     Row(
                       children: [
+                        const Icon(
+                          Icons.location_on,
+                          color: Colors.white70,
+                          size: 16,
+                        ),
+                        const SizedBox(width: 4),
                         Expanded(
                           child: AppText(
-                            text: field.name ?? 'Unknown Field',
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            maxLine: 2,
+                            text: field.location ?? 'Unknown Location',
+                            color: Colors.white70,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400,
+                            maxLine: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
+                      ],
+                    ),
+                    // Condition text
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.eco,
+                          color: _getConditionColor(field.condition),
+                          size: 16,
+                        ),
+                        const SizedBox(width: 4),
+                        AppText(
+                          text: _getConditionText(field.condition),
+                          color: _getConditionColor(field.condition),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        const Spacer(),
                         Container(
                           width: 32,
                           height: 32,
